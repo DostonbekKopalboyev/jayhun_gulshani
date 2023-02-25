@@ -24,7 +24,7 @@
 
     <div class="container d-flex justify-content-center">
 
-        <form action="{{route('sovga.update',$sovga->id)}}" method="POST" style="width: 30vw;" enctype="multipart/form-data">
+        <form action="{{route('sovga.update',$sovga->id)}}" method="POST" style="width: 30vw;" enctype="multipart/form-data" id="saved">
             @csrf
             @method("PATCH")
             <div class="mb-3" >
@@ -53,7 +53,7 @@
             </div>
             <br>
             <div>
-                <button type="submit" class="btn btn-success" name="submit">Save</button>
+                <button type="submit" class="btn btn-success" name="submit" onclick="saved()">Save</button>
                 <a href="#" class="btn btn-danger">Cancel</a>
             </div>
         </form>

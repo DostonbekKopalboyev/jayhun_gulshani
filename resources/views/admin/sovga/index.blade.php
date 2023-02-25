@@ -76,7 +76,30 @@
 
 {{--    </script>--}}
 
-
+    <script>
+        saved=document.getElementById('saved');
+        function saved() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            }).then((result) => {
+                if (result.resumeTimer) {
+                    saved.submit();
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Signed in successfully'
+            })
+        }
+    </script>
 
 
 
