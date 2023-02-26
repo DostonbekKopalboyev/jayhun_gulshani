@@ -27,12 +27,12 @@
                     <td>{{$value->narx}}</td>
                     <td><a href="{{route('admin.sovga.update',$value->id)}}"><i class="fa fa-edit bg-success p-2 ml-1"></i></a>
 
-{{--                        <form action="{{route('sovga.destroy',$value->id)}}" method="POST" id="sovga_delete_form">--}}
-{{--                            @csrf--}}
-{{--                            @method('DELETE')--}}
-{{--                        </form>--}}
-{{--                            <button type="submit"><i class="fa fa-trash bg-danger p-2 ml-1" onclick="sovga_delete()" ></i></button>--}}
-                        <a href="{{route('sovga.destroy',$value->id)}}" id="sovga_delete_form"><i class="fa fa-trash bg-danger p-2 ml-1" onclick="sovga_delete()" ></i></a>
+                        <form action="{{route('sovga.destroy',$value->id)}}" method="POST" id="sovga_delete_form">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                            <button type="submit"><i class="fa fa-trash bg-danger p-2 ml-1" onclick="sovga_delete()" ></i></button>
+{{--                        <a href="{{route('sovga.destroy',$value->id)}}" id="sovga_delete_form"><i class="fa fa-trash bg-danger p-2 ml-1" onclick="sovga_delete()" ></i></a>--}}
                     </td>
                 </tr>
             @endforeach
@@ -40,25 +40,25 @@
         </table>
     </div>
 
-{{--    <script>--}}
-{{--        delete_form=document.getElementById('sovga_delete_form');--}}
-{{--        function sovga_delete(){--}}
-{{--                Swal.fire({--}}
-{{--                title: 'O`chirmoqchimisiz?',--}}
-{{--                text: "o`chirmiqchimisiz",--}}
-{{--                icon: 'warning',--}}
-{{--                showCancelButton: true,--}}
-{{--                confirmButtonColor: '#3085d6',--}}
-{{--                cancelButtonColor: '#d33',--}}
-{{--                confirmButtonText: 'O`chirish',--}}
-{{--                cancelButtonText:'Bekor qilish'--}}
-{{--                 }).then((result) => {--}}
-{{--                if (result.isConfirmed) {--}}
-{{--                    delete_form.submit();--}}
-{{--                }--}}
-{{--             })--}}
-{{--        }--}}
-{{--        </script>--}}
+    <script>
+        delete_form=document.getElementById('sovga_delete_form');
+        function sovga_delete(){
+                Swal.fire({
+                title: 'O`chirmoqchimisiz?',
+                text: "o`chirmiqchimisiz",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'O`chirish',
+                cancelButtonText:'Bekor qilish'
+                 }).then((result) => {
+                if (result.isConfirmed) {
+                    delete_form.submit();
+                }
+             })
+        }
+        </script>
 
 {{--    @if (session('message'))--}}
 {{--        $(document).ready(function() {--}}
@@ -77,33 +77,34 @@
 
 {{--    </script>--}}
 
-    <script>
+{{--    <script>--}}
+{{--form=document.getElementById('sovga_delete_form')--}}
+{{--        $(function (){--}}
+{{--            $(document).on('click',form,function (e){--}}
+{{--                e.preventDefault();--}}
+{{--                var link =$(this).attr('action');--}}
 
-        $(function (){
-            $(document).on('click',#sovga_delete_form,function (e){
-                e.preventDefault();
-                var link =$(this).attr('href');
 
+{{--                Swal.fire({--}}
+{{--                    title: 'O`chirmoqchimisiz?',--}}
+{{--                    text: "o`chirmiqchimisiz",--}}
+{{--                    icon: 'warning',--}}
+{{--                    showCancelButton: true,--}}
+{{--                    confirmButtonColor: '#3085d6',--}}
+{{--                    cancelButtonColor: '#d33',--}}
+{{--                    confirmButtonText: 'O`chirish',--}}
+{{--                    cancelButtonText:'Bekor qilish'--}}
+{{--                }).then((result) => {--}}
+{{--                    if (result.isConfirmed) {--}}
+{{--                        // delete_form.submit();--}}
+{{--                    }--}}
+{{--                })--}}
 
-                Swal.fire({
-                    title: 'O`chirmoqchimisiz?',
-                    text: "o`chirmiqchimisiz",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'O`chirish',
-                    cancelButtonText:'Bekor qilish'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        delete_form.submit();
-                    }
-                })
-
-            })
-        })
-        </script>
-    {{--    saved=document.getElementById('saved');--}}
+{{--            })--}}
+{{--        })--}}
+{{--        </script>--}}
+    
+{{--    --}}{{--    saved=document.getElementById('saved');--}}
     {{--    function saved() {--}}
     {{--        const Toast = Swal.mixin({--}}
     {{--            toast: true,--}}
