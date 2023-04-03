@@ -3,7 +3,8 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,7 +41,7 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="favicon.ico">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
 
     <!-- Animate.css -->
@@ -57,7 +58,7 @@
     <link rel="stylesheet" href="/user/css/bootstrap.css">
 
     <link rel="stylesheet" href="/user/css/style.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Modernizr JS -->
     <script src="/user/js/modernizr-2.6.2.min.js"></script>
@@ -80,6 +81,8 @@
                     <div class="row">
                         <h1 class="to-animate">foodee</h1>
                         <h2 class="to-animate">Lovely Designed <span>by</span> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></h2>
+                        <a href="{{route('savat.index')}}">Savatni ko'rish</a>
+
                     </div>
                 </div>
             </div>
@@ -340,7 +343,11 @@
                                         <div>
                                             <h3>{{$value->name}}</h3>
                                             <p>{{$value->description}}</p>
+{{--                                            @foreach($savat as $sav)--}}
+                                                <a href="{{route('user.savat',$value->id) }}"><i class="fa-solid fa-cart-plus fa-2x "></i></a>
+{{--                                            @endforeach--}}
                                         </div>
+
                                     </div>
                                     <div class="fh5co-food-pricing">
                                         {{$value->narx}}
@@ -365,6 +372,14 @@
                                         <div>
                                             <h3>{{$value->name}}</h3>
                                             <p>{{$value->description}}</p>
+                                            <a href=""><i class="fa-solid fa-cart-plus fa-2x "></i></a>
+                                        </div>
+                                        <div>
+{{--                                            <form action="" id="form_checkbox2" style="display: none;">--}}
+{{--                                                <label for="quantity">Sovg'ani sonini tanlang:</label>--}}
+{{--                                                <input type="number" id="quantity" name="quantity" min="1" >--}}
+{{--                                                <input type="submit">--}}
+{{--                                            </form>--}}
                                         </div>
                                     </div>
                                     <div class="fh5co-food-pricing">
@@ -577,12 +592,37 @@
 <!-- Stellar Parallax -->
 <script src="/user/js/jquery.stellar.min.js"></script>
 
+
 <!-- Flexslider -->
 <script src="/user/js/jquery.flexslider-min.js"></script>
 <script>
-    $(function () {
-        $('#date').datetimepicker();
-    });
+    // $(function () {
+    //     $('#date').datetimepicker();
+    // });
+
+
+    // var form=document.getElementById('form_checkbox')
+    // var checkBox1 = document.getElementById("myCheck1");
+    // function myFunction() {
+    //         // var checkBox2 = document.getElementById("myCheck2");
+    //     if (checkBox1.checked == true){
+    //     form.style.display = "block";
+    // } else {
+    //     form.style.display = "none";
+    // }
+    // }
+
+
+    {{--var form2=document.getElementById('form_checkbox2')--}}
+    {{--var checkBox2 = document.getElementById("{{$value->id}}");--}}
+    {{--function myFunctiontwo() {--}}
+    {{--    // var checkBox2 = document.getElementById("myCheck2");--}}
+    {{--    if (checkBox2.checked == true){--}}
+    {{--        form2.style.display = "block";--}}
+    {{--    } else {--}}
+    {{--        form2.style.display = "none";--}}
+    {{--    }--}}
+    {{--}--}}
 </script>
 <!-- Main JS -->
 <script src="/user/js/main.js"></script>

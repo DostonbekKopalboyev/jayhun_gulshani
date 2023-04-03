@@ -198,21 +198,21 @@
 
                     <li class="nav-item">
                         <a href="{{url('/admins')}}" class="nav-link">
-                            <i class="nav-icon fas fa-gift"></i>
-                            <p>Buyurtmalar</p>
+                            <i class="nav-icon fa-solid fas fa-chart-bar"></i>
+                            <p>Statistika</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{url('/admin/sovga')}}" class="nav-link">
-                            <i class="nav-icon fas fa-folder-plus">   </i>
-                            <p>Sovg`a qo`shish </p>
+                        <a href="{{route('sovga')}}" class="nav-link">
+                            <i class="nav-icon fa-solid fas fa-gift"></i>
+                            <p>Sovg`a qo'shish </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-columns"></i>
-                            <p>Kanban Board</p>
+                        <a href="{{route('category.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-folder-plus"></i>
+                            <p>Kategoriya qo'shish</p>
                         </a>
                     </li>
                 </ul>
@@ -330,8 +330,9 @@
 
 
 
-@yield('admin.index')
-@yield('admin.sovga.index')
+                @yield('admin.index')
+                @yield('admin.sovga.index')
+                @yield('admin.category.index')
 
 
 

@@ -21,7 +21,14 @@ return new class extends Migration
             $table->string('narx');
             $table->integer('soni')->nullable();
             $table->integer('savat_id')->nullable();
+
+            $table->unsignedBigInteger('category_id')->unsigned();
+//            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
+//            $table->unsignedBigInteger('category_id')->index();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
             $table->timestamps();
+
         });
     }
 

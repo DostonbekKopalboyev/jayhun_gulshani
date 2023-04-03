@@ -23,47 +23,63 @@
 <div class="container">
     <div class="text-center mb-4 pt-4">
         <h3 class="mt-4">Yangi sovg`a qo`shish</h3>
-        <p class="text-muted">Bu yerda siz mijozlar uchun yangi sovg`alar qos`shishingiz mumkin</p>
+        <p class="text-muted">Bu yerda siz mijozlar uchun yangi sovg`alar qo'shishingiz mumkin</p>
     </div>
 
     <div class="container d-flex justify-content-center">
 
-        <form action="{{url('admin/sovga')}}" method="POST" style="width: 30vw;" enctype="multipart/form-data">
+        <form action="{{route('sovga.store')}}" method="POST" style="width: 30vw;" enctype="multipart/form-data">
             @csrf
-{{--            @method('PATCH')--}}
             <div class="mb-3" >
-                <br>
                 <div class="md-3">
                     <label class="form-label">Sovg`a nomi: </label>
-                    <input type="text" class="form-control" name="name" placeholder="Sovg`a nomi">
+                    <input type="text" required="required" class="form-control" name="name" placeholder="Sovg`a nomi">
                 </div>
                 <br>
 
                 <div class="md-3">
                     <label class="form-label">Izoh: </label>
-                    <textarea type="text" class="form-control my-6" name="description" placeholder="Sovg`aga izoh" style="height: 100px;"></textarea>
+                    <textarea type="text" class="form-control my-6" required="required" name="description" placeholder="Sovg`aga izoh" style="height: 100px;"></textarea>
                 </div>
                 <br>
                 <div class="md-3">
                     <label class="form-label">Sovg`ani narxi: </label>
-                    <input type="number" class="form-control" name="narx" placeholder="Sovg`ani narxi">
+                    <input type="number" class="form-control" required="required" name="narx" placeholder="Sovg`ani narxi">
                 </div>
+                <br>
+
+                    <label for="title">Enter Category Name</label>
+                    <select class="form-select form-select-sm"  name="category_name" required aria-label=".form-select-sm example" id="title">
+                        @foreach($categories as $sovga)
+                            <option value="{{$sovga->category_name}}"  class="form-control">{{$sovga->category_name}}</option>
+                        @endforeach
+                    </select>
                 <br>
 
                 <div class="mb-3">
                     <label class="form-label">Sovg`ani rasmi: </label>
-                    <input type="file" class="form-control" name="image"  placeholder="Sovg`ani rasmi">
+                    <input type="file" required class="form-control" name="image"  placeholder="Sovg`ani rasmi">
                 </div>
             </div>
-            <br>
             <div>
-                <button type="submit" class="btn btn-success" name="submit">Save</button>
-                <a href="#" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-success">Save</button>
+                <a href="{{route('sovga')}}" class="btn btn-danger">Cancel</a>
             </div>
         </form>
 
     </div>
 </div>
+
+@if(Session::has('message'))
+    <script>
+        console.log({{session('message')}})
+        swal('Message',"{{Session::get('message')}},'success,",{
+            button:true,
+            button:'OK',
+        });
+    </script>
+
+@endif
 
 
 

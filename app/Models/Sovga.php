@@ -11,12 +11,12 @@ class Sovga extends Model
     protected $table='sovgas';
     protected $primaryKey='id';
     protected $fillable=[
-        'image',
-        'name',
-        'description',
-        'narx',
-        'soni',
-        'savat_id'
+        'image','name','description','narx','soni','savat_id','category_name'
     ];
+
+    public function category(){
+
+        return $this->belongsTo(Category::class);
+    }
 
 }

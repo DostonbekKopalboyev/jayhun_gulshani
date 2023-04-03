@@ -5,6 +5,8 @@ use \App\Http\Controllers\Controller;
 use \App\Http\Controllers\MenyuController;
 use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\SovgaController;
+use \App\Http\Controllers\SavatController;
+use \App\Http\Controllers\CategoryController;
 
 
 /*
@@ -27,6 +29,9 @@ Route::resource('/users',MenyuController::class);
 Route::resource('/admins',AdminController::class);
 
 //Sovg`a bo`limiga o`tadi
-Route::resource('admin/sovga',SovgaController::class);
+Route::resource('/sovga',SovgaController::class)->name('index','sovga');
+Route::resource('/savat',SavatController::class);
+Route::resource('/category',CategoryController::class);
 Route::get('/admin/sovga/edit/{id}',[SovgaController::class,'sovga_update'])->name('admin.sovga.update');
+Route::post('/users/savat/{id}', [SavatController::class ,'addToCart'])->name('user.savat');
 
