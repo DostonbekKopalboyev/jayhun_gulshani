@@ -49,9 +49,9 @@
                 <br>
 
                     <label for="title">Enter Category Name</label>
-                    <select class="form-select form-select-sm"  name="category_name" required aria-label=".form-select-sm example" id="title">
+                    <select class="form-select form-select-sm"  name="category_id" required aria-label=".form-select-sm example" id="title">
                         @foreach($categories as $sovga)
-                            <option value="{{$sovga->category_name}}"  class="form-control">{{$sovga->category_name}}</option>
+                            <option value="{{$sovga->id}}"  class="form-control">{{$sovga->category_name}}</option>
                         @endforeach
                     </select>
                 <br>

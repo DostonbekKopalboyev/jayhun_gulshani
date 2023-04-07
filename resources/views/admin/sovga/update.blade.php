@@ -50,6 +50,13 @@
                     <label class="form-label">Sovg`ani rasmi: </label>
                     <input type="file" class="form-control" name="image"  value="{{$sovga['image']}}">
                 </div>
+                <br>
+                <label for="title">Enter Category Name</label>
+                <select class="form-select form-select-sm"  name="category_id" required aria-label=".form-select-sm example" id="title">
+                    @foreach($categories as $sovga)
+                        <option value="{{$sovga->id}}"  class="form-control">{{$sovga->category_name}}</option>
+                    @endforeach
+                </select>
             </div>
             <br>
             <div>

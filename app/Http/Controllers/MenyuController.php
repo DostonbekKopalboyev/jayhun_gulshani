@@ -20,10 +20,6 @@ class MenyuController extends Controller
         return view('user.index',['sovgani_chiqar'=>$sovga,'savat'=>$savat]);
     }
 
-//    public function admin()
-//    {
-//        return view('admin.index');
-//    }
 
 
     public function create()

@@ -330,10 +330,7 @@
 
 
 
-                @yield('admin.index')
-                @yield('admin.sovga.index')
-                @yield('admin.category.index')
-
+                @yield('content')
 
 
 

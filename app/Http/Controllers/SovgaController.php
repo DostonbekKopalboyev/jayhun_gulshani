@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\SovgaRequest;
 use App\Models\Category;
 use App\Models\Sovga;
 use Illuminate\Console\View\Components\Alert;
@@ -16,46 +17,31 @@ class SovgaController extends Controller
 
     public function index()
     {
-        $sovgas=Sovga::all();
+        $sovgas=Sovga::with('category')->get();
         return view('admin.sovga.index',['sovgas'=>$sovgas]);
     }
 
-
     public function create():View
     {
-        $sovgas=Sovga::all();
         $categories=Category::all();
-
-        return view('admin.sovga.create',['sovgas'=>$sovgas,'categories'=>$categories]);
+        return view('admin.sovga.create',['categories'=>$categories]);
     }
-
 
     public function store(Request $request):RedirectResponse
     {
-//dd($request);
-        $request->validate([
-            'name'=>'required',
-            'image'=>'required|file',
-            'description' => 'required',
-            'narx' => 'required',
-//            'category_name'=>'required'
-        ]);
-//dd($request);
-
          $sovga=$request->all();
-//         if (!isset($sovga)) {
 
-
-//         dd($sovga);
              if ($request->hasFile('image')) {
                  $image = $request->file('image');
                  $profileImage = '/images/image_' . date('YmdHis') . $image->getClientOriginalName();
                  $image->move('images/', $profileImage);
                  $sovga['image'] = $profileImage;
              }
+//             dd($sovga);
+//             $sovga->save();
              Sovga::create($sovga);
 
-             return redirect()->back()->with('message', 'Muvafaqqiyatli saqlandi');
+             return redirect()->route('sovga')->with('message', 'Muvafaqqiyatli saqlandi');
 //         }
     }
 
@@ -67,18 +53,14 @@ class SovgaController extends Controller
 
     public function edit(Sovga $sovga,$id)
     {
-        return view('admin.sovga.update',compact('sovga'));
+        $categories=Category::all();
+        return view('admin.sovga.update',compact('sovga','categories'));
     }
 
-    public function update(Request $request, Sovga $sovga):RedirectResponse
+    public function update(SovgaRequest $request, Sovga $sovga):RedirectResponse
     {
-        $request->validate([
-            'name'=>'required',
-            'description' => 'required',
-            "narx" => 'required',
-            "image" => 'required|file',
-            'category_name'=>'required'
-        ]);
+        $categories=Category::all();
+
         if ($request->hasFile('image')){
             unlink(public_path($sovga->image));
             $image = $request->file('image');
@@ -86,7 +68,6 @@ class SovgaController extends Controller
            $image->move(public_path('images/'), $profilImage);
            $sovga->image="/images/".$profilImage;
         }
-//        $sovga->update([
         $sovga = Sovga::find($request->id);
         $sovga->name = $request->name;
         $sovga->description = $request->description;
@@ -96,7 +77,7 @@ class SovgaController extends Controller
         $sovga->save();
 //        ]);
 
-        return redirect()->back()->with('messege','Muvafaqqiyatli yangilandi');
+        return redirect()->route('sovga.index',['categories'=>$categories])->with('messege','Muvafaqqiyatli yangilandi');
     }
 
     public function destroy($id)

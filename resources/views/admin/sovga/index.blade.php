@@ -1,7 +1,13 @@
 @extends('admin.app')
-@section('admin.sovga.index')
+@section('content')
 
     <a href="{{route('sovga.create')}}" class="btn btn-success" style="width:120px; margin: 50px 0 0 50px;padding:15px 25px;">Qo`shish</a>
+
+{{--    @if($errors->any())--}}
+{{--        @foreach($errors->all() as $error)--}}
+{{--            <h1>{{$error}}</h1>--}}
+{{--        @endforeach--}}
+{{--    @endif--}}
 
     <div class="container">
         <table class="table table-dark table-striped mt-5 ">
@@ -24,7 +30,7 @@
                     <td>{{$sovga->name}}</td>
                     <td >{{$sovga->description}}</td>
                     <td>{{$sovga->narx}}</td>
-                    <td>{{$sovga->category_name}}</td>
+                    <td>{{$sovga->category->category_name}}</td>
 
                     <td>
                         <form action="{{route('sovga.destroy',$sovga->id)}}" method="POST" id="sovga_delete_form{{$sovga->id}}">
@@ -32,8 +38,8 @@
                             @method('DELETE')
                             <a href="{{route('admin.sovga.update',$sovga->id)}}"><i class="fa fa-edit bg-success p-2 ml-1"></i></a>
                         </form>
-                            <button onclick="sovga_delete(id)" ><i class="fa fa-trash bg-danger p-2 ml-1" ></i></button>
-{{--                        <a href="{{route('sovga.destroy',$sovga->id)}}" id="sovga_delete_form"><i class="fa fa-trash bg-danger p-2 ml-1" onclick="sovga_delete()" ></i></a>--}}
+                        <button onclick="sovga_delete({{$sovga->id}})" type="submit" ><i class="fa fa-trash bg-danger p-2 ml-1" ></i></button>
+                        {{--                        <a href="{{route('sovga.destroy',$sovga->id)}}" id="sovga_delete_form"><i class="fa fa-trash bg-danger p-2 ml-1" onclick="sovga_delete()" ></i></a>--}}
                     </td>
                 </tr>
             @endforeach
@@ -54,9 +60,10 @@
 
 
     <script>
-        delete_form=document.getElementById('sovga_delete_form');
-        function sovga_delete(){
-                Swal.fire({
+        function sovga_delete(id){
+            var delete_form=document.getElementById('sovga_delete_form'+id);
+
+            Swal.fire({
                 title: 'O`chirmoqchimisiz?',
                 text: "o`chirmiqchimisiz",
                 icon: 'warning',
@@ -105,29 +112,29 @@
 {{--    </script>--}}
 
     <script>
-form=document.getElementById('sovga_delete_form')
-        $(function (){
-            $(document).on('click',form,function(e){
-                e.preventDefault();
-                var link =$(this).attr('action');
-
-            window.addEventListener('show-delete-confirmation',event=>{
-                Swal.fire({
-                    title: 'O`chirmoqchimisiz?',
-                    text: "o`chirmiqchimisiz",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'O`chirish',
-                    cancelButtonText:'Bekor qilish'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Livewire.emit('sovga_delete');
-                    }
-                })
-
-            })
+// form=document.getElementById('sovga_delete_form')
+//         $(function (){
+//             $(document).on('click',form,function(e){
+//                 e.preventDefault();
+//                 var link =$(this).attr('action');
+//
+//             window.addEventListener('show-delete-confirmation',event=>{
+//                 Swal.fire({
+//                     title: 'O`chirmoqchimisiz?',
+//                     text: "o`chirmiqchimisiz",
+//                     icon: 'warning',
+//                     showCancelButton: true,
+//                     confirmButtonColor: '#3085d6',
+//                     cancelButtonColor: '#d33',
+//                     confirmButtonText: 'O`chirish',
+//                     cancelButtonText:'Bekor qilish'
+//                 }).then((result) => {
+//                     if (result.isConfirmed) {
+//                         Livewire.emit('sovga_delete');
+//                     }
+//                 })
+//
+//             })
         // })
         </script>
 {{----}}

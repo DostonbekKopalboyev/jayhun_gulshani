@@ -343,8 +343,15 @@
                                         <div>
                                             <h3>{{$value->name}}</h3>
                                             <p>{{$value->description}}</p>
+
+                                            <form method="post" action="{{route('trash',$value->id) }}">
+                                                @csrf
+                                                <input type="number" name="count">
+                                                <button type="submit">Savat</button>
+                                            </form>
+
 {{--                                            @foreach($savat as $sav)--}}
-                                                <a href="{{route('user.savat',$value->id) }}"><i class="fa-solid fa-cart-plus fa-2x "></i></a>
+{{--                                                <a href="{{route('user.savat',$value->id) }}"><i class="fa-solid fa-cart-plus fa-2x "></i></a>--}}
 {{--                                            @endforeach--}}
                                         </div>
 
@@ -372,7 +379,12 @@
                                         <div>
                                             <h3>{{$value->name}}</h3>
                                             <p>{{$value->description}}</p>
-                                            <a href=""><i class="fa-solid fa-cart-plus fa-2x "></i></a>
+                                            <form method="post" action="{{route('trash',$value->id) }}">
+                                                @csrf
+                                                <input type="number" name="count">
+                                                <button type="submit">Savat</button>
+                                            </form>
+{{--                                            <a href=""><i class="fa-solid fa-cart-plus fa-2x "></i></a>--}}
                                         </div>
                                         <div>
 {{--                                            <form action="" id="form_checkbox2" style="display: none;">--}}

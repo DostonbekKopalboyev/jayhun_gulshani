@@ -15,6 +15,7 @@ return [
     |
     */
 
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
@@ -40,6 +41,11 @@ return [
     | application. If disabled, a simple generic error page is shown.
     |
     */
+
+    'providers' => [
+        // ...
+        Spatie\Permission\PermissionServiceProvider::class,
+    ],
 
     'debug' => (bool) env('APP_DEBUG', false),
 
@@ -211,5 +217,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+
 
 ];
